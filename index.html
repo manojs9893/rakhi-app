@@ -8,10 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Playfair+Display:wght@700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;700;900&display=swap"
         rel="stylesheet">
     <style>
-        /* --- General Setup & Body --- */
         * {
             margin: 0;
             padding: 0;
@@ -20,138 +19,195 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #ffecd2, #fcb69f);
-            color: #333;
-            /* Darker text for better readability on light gradient */
-            text-align: center;
+            background: radial-gradient(ellipse at top, #ff9a9e 0%, #fecfef 50%, #fecfef 100%),
+                linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             overflow-x: hidden;
-            /* Prevent horizontal scroll */
-            padding: 20px 10px;
+            padding: 20px;
+            position: relative;
         }
 
-        /* --- Animated Particle Background --- */
-        .particle-container {
+        /* Floating Hearts Animation */
+        .hearts-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            pointer-events: none;
+            z-index: 1;
             overflow: hidden;
-            z-index: -1;
-            /* Place behind all content */
         }
 
-        .particle {
+        .heart {
             position: absolute;
-            bottom: -20px;
-            background-color: rgba(255, 255, 255, 0.4);
-            border-radius: 50%;
-            animation: floatUp 20s infinite linear;
+            color: #ff6b9d;
+            font-size: 20px;
             opacity: 0;
+            animation: floatHeart 8s infinite ease-in-out;
         }
 
-        /* Different sizes and animation delays for a random effect */
-        .particle:nth-child(1) {
-            width: 15px;
-            height: 15px;
-            left: 10%;
-            animation-duration: 25s;
-            animation-delay: 0s;
+        .heart:nth-child(odd) {
+            color: #f093fb;
         }
 
-        .particle:nth-child(2) {
-            width: 20px;
-            height: 20px;
-            left: 20%;
-            animation-duration: 18s;
-            animation-delay: 2s;
-        }
-
-        .particle:nth-child(3) {
-            width: 10px;
-            height: 10px;
-            left: 35%;
-            animation-duration: 30s;
-            animation-delay: 5s;
-        }
-
-        .particle:nth-child(4) {
-            width: 18px;
-            height: 18px;
-            left: 50%;
-            animation-duration: 15s;
-            animation-delay: 1s;
-        }
-
-        .particle:nth-child(5) {
-            width: 12px;
-            height: 12px;
-            left: 65%;
-            animation-duration: 22s;
-            animation-delay: 8s;
-        }
-
-        .particle:nth-child(6) {
-            width: 25px;
-            height: 25px;
-            left: 80%;
-            animation-duration: 19s;
-            animation-delay: 4s;
-        }
-
-        .particle:nth-child(7) {
-            width: 16px;
-            height: 16px;
-            left: 90%;
-            animation-duration: 28s;
-            animation-delay: 10s;
-        }
-
-        @keyframes floatUp {
+        @keyframes floatHeart {
             0% {
-                transform: translateY(0) scale(1);
-                opacity: 0.5;
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
             }
 
             100% {
-                transform: translateY(-100vh) scale(0.5);
+                transform: translateY(-100px) rotate(360deg);
                 opacity: 0;
             }
         }
 
-        /* --- Heading --- */
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 10vw, 4rem);
-            /* Responsive font size */
-            margin-bottom: 25px;
-            color: #e63946;
-            animation: softGlow 2.5s infinite alternate ease-in-out;
+        /* Sparkle Effects */
+        .sparkles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
         }
 
-        @keyframes softGlow {
-            from {
-                text-shadow: 0 0 5px #fff, 0 0 10px #ff7b8c, 0 0 15px #f72585;
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            animation: sparkleAnimation 3s infinite ease-in-out;
+        }
+
+        @keyframes sparkleAnimation {
+
+            0%,
+            100% {
+                transform: scale(0);
+                opacity: 0;
             }
 
-            to {
-                text-shadow: 0 0 10px #fff, 0 0 20px #ff7b8c, 0 0 30px #f72585;
+            50% {
+                transform: scale(1);
+                opacity: 1;
             }
         }
 
-        /* --- Slideshow with Ken Burns Effect --- */
+        /* Main Content */
+        .main-container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        /* Enhanced Title */
+        .title-container {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(3rem, 8vw, 6rem);
+            background: linear-gradient(45deg, #ff6b9d, #c44569, #f8b500, #ff6b9d);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s ease-in-out infinite, titleFloat 4s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(255, 107, 157, 0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes gradientShift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes titleFloat {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .title-decoration {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            border: 3px solid transparent;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b9d, transparent, #c44569, transparent);
+            animation: rotateBorder 8s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotateBorder {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        /* Enhanced Slideshow */
+        .slideshow-container {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
         .slideshow {
             width: 90vw;
-            /* Responsive width */
-            max-width: 600px;
-            aspect-ratio: 4 / 3;
-            /* Maintain shape on all screens */
+            max-width: 700px;
+            aspect-ratio: 16 / 10;
             margin: 0 auto;
             position: relative;
             overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            border: 3px solid white;
+            border-radius: 25px;
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.1),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
         }
 
         .slide {
@@ -159,62 +215,53 @@
             width: 100%;
             height: 100%;
             opacity: 0;
-            animation: kenburnsFade 18s infinite;
-            /* 6s per slide * 3 slides */
+            animation: enhancedSlideShow 15s infinite;
+            border-radius: 23px;
+            overflow: hidden;
         }
 
-        /* Stagger the animation for each slide */
         .slide:nth-child(1) {
             animation-delay: 0s;
         }
 
         .slide:nth-child(2) {
-            animation-delay: 6s;
+            animation-delay: 5s;
         }
 
         .slide:nth-child(3) {
-            animation-delay: 12s;
+            animation-delay: 10s;
         }
 
         .slide img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 12px;
-            /* Inner radius */
+            transition: transform 5s ease;
         }
 
-        .overlay-text {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
-            padding: 40px 20px 20px 20px;
-            color: #fff;
-            font-size: clamp(1rem, 4vw, 1.3rem);
-            /* Responsive font size */
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        .slide.active img {
+            transform: scale(1.1);
         }
 
-        @keyframes kenburnsFade {
+        @keyframes enhancedSlideShow {
             0% {
                 opacity: 0;
-                transform: scale(1.1) rotate(2deg);
+                transform: scale(1.1) rotateY(45deg);
             }
 
             5% {
                 opacity: 1;
+                transform: scale(1) rotateY(0deg);
             }
 
             33.33% {
                 opacity: 1;
+                transform: scale(1.05) rotateY(0deg);
             }
 
-            /* Hold slide for its duration */
             38.33% {
                 opacity: 0;
-                transform: scale(1) rotate(-2deg);
+                transform: scale(0.9) rotateY(-45deg);
             }
 
             100% {
@@ -222,66 +269,451 @@
             }
         }
 
-        /* --- Footer --- */
-        footer {
-            margin-top: 30px;
-            padding: 15px;
-            background: rgba(230, 57, 70, 0.85);
+        /* Enhanced Overlay Text */
+        .overlay-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.8));
+            padding: 50px 30px 25px;
             color: #fff;
-            font-size: clamp(1rem, 3.5vw, 1.2rem);
-            border-radius: 10px;
-            display: inline-block;
-            /* Allows it to fit content width */
-            animation: fadeInUp 1.5s ease-out;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            font-weight: 600;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            transform: translateY(100%);
+            animation: slideUpText 15s infinite;
         }
 
-        @keyframes fadeInUp {
-            from {
+        .slide:nth-child(1) .overlay-text {
+            animation-delay: 0s;
+        }
+
+        .slide:nth-child(2) .overlay-text {
+            animation-delay: 5s;
+        }
+
+        .slide:nth-child(3) .overlay-text {
+            animation-delay: 10s;
+        }
+
+        @keyframes slideUpText {
+            0% {
+                transform: translateY(100%);
                 opacity: 0;
-                transform: translateY(30px);
+            }
+
+            5% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            33.33% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            38.33% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+        }
+
+        /* Progress Indicator */
+        .progress-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            animation: dotProgress 15s infinite;
+            box-shadow: 0 0 15px rgba(255, 107, 157, 0.3);
+        }
+
+        .progress-dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .progress-dot:nth-child(2) {
+            animation-delay: 5s;
+        }
+
+        .progress-dot:nth-child(3) {
+            animation-delay: 10s;
+        }
+
+        @keyframes dotProgress {
+
+            0%,
+            33.33%,
+            100% {
+                background: rgba(255, 255, 255, 0.4);
+                transform: scale(1);
+            }
+
+            5%,
+            30% {
+                background: #ff6b9d;
+                transform: scale(1.3);
+                box-shadow: 0 0 20px #ff6b9d;
+            }
+        }
+
+        /* Enhanced Footer */
+        .footer {
+            margin-top: 40px;
+            padding: 20px 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            font-weight: 600;
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            animation: footerGlow 3s ease-in-out infinite alternate;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 4s infinite;
+        }
+
+        @keyframes footerGlow {
+            from {
+                box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
             }
 
             to {
-                opacity: 1;
-                transform: translateY(0);
+                box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                min-height: 100vh;
+                justify-content: flex-start;
+                padding-top: 40px;
+            }
+
+            .main-container {
+                width: 100%;
+                max-width: none;
+            }
+
+            .title-container {
+                margin-bottom: 30px;
+            }
+
+            .title {
+                font-size: clamp(2.5rem, 12vw, 4rem);
+                line-height: 1.2;
+                margin-bottom: 10px;
+            }
+
+            .title-decoration {
+                width: 100%;
+                height: 100%;
+            }
+
+            .slideshow-container {
+                margin-bottom: 30px;
+                width: 100%;
+            }
+
+            .slideshow {
+                width: 100%;
+                max-width: 100%;
+                aspect-ratio: 16 / 12;
+                margin: 0;
+                border-radius: 20px;
+            }
+
+            .slide {
+                border-radius: 18px;
+            }
+
+            .overlay-text {
+                padding: 30px 20px 20px;
+                font-size: clamp(0.9rem, 4vw, 1.2rem);
+                line-height: 1.4;
+            }
+
+            .progress-container {
+                margin-top: 20px;
+                gap: 12px;
+            }
+
+            .progress-dot {
+                width: 10px;
+                height: 10px;
+            }
+
+            .footer {
+                padding: 15px 20px;
+                margin: 30px 5px 20px;
+                font-size: clamp(0.9rem, 4vw, 1.1rem);
+                border-radius: 25px;
+                line-height: 1.3;
+            }
+
+            /* Reduce heart size on mobile */
+            .heart {
+                font-size: 16px;
+            }
+
+            /* Reduce sparkle density on mobile */
+            .sparkle {
+                width: 3px;
+                height: 3px;
+            }
+        }
+
+        /* Extra small phones */
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+                padding-top: 30px;
+            }
+
+            .title {
+                font-size: clamp(2rem, 15vw, 3.5rem);
+            }
+
+            .slideshow {
+                aspect-ratio: 4 / 3;
+                border-radius: 15px;
+            }
+
+            .slide {
+                border-radius: 13px;
+            }
+
+            .overlay-text {
+                padding: 25px 15px 15px;
+                font-size: clamp(0.8rem, 5vw, 1rem);
+            }
+
+            .footer {
+                padding: 12px 15px;
+                margin: 25px 5px 15px;
+                font-size: clamp(0.8rem, 5vw, 1rem);
+                border-radius: 20px;
+            }
+
+            .progress-dot {
+                width: 8px;
+                height: 8px;
+            }
+        }
+
+        /* Landscape phones */
+        @media (max-width: 768px) and (orientation: landscape) {
+            body {
+                padding-top: 20px;
+                justify-content: center;
+            }
+
+            .title {
+                font-size: clamp(2rem, 8vw, 3rem);
+                margin-bottom: 15px;
+            }
+
+            .title-container {
+                margin-bottom: 20px;
+            }
+
+            .slideshow {
+                aspect-ratio: 16 / 9;
+                max-width: 90vw;
+            }
+
+            .slideshow-container {
+                margin-bottom: 20px;
+            }
+
+            .footer {
+                margin: 20px 5px 10px;
             }
         }
     </style>
 </head>
 
 <body>
+    <!-- Floating Hearts -->
+    <div class="hearts-container" id="heartsContainer"></div>
 
-    <!-- Animated particles will be generated here by CSS -->
-    <div class="particle-container">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
+    <!-- Sparkles -->
+    <div class="sparkles" id="sparklesContainer"></div>
+
+    <div class="main-container">
+        <div class="title-container">
+            <div class="title-decoration"></div>
+            <h1 class="title">💖 Happy Raksha Bandhan 💖</h1>
+        </div>
+
+        <div class="slideshow-container">
+            <div class="slideshow">
+                <div class="slide">
+                    <img src="image1.jpeg" alt="Raksha Bandhan Celebration 1">
+                    <div class="overlay-text">✨ A bond of love, care, and lifelong protection 💝</div>
+                </div>
+                <div class="slide">
+                    <img src="image2.jpeg" alt="Raksha Bandhan Celebration 2">
+                    <div class="overlay-text">🌟 Rakhi is the thread that ties hearts forever ❤️</div>
+                </div>
+                <div class="slide">
+                    <img src="image3.jpeg" alt="Raksha Bandhan Celebration 3">
+                    <div class="overlay-text">🎊 Celebrating the unbreakable bond of siblings 🌸</div>
+                </div>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-dot"></div>
+                <div class="progress-dot"></div>
+                <div class="progress-dot"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            🌟 Requested by Akshat & Created by His Father 🌟
+        </div>
     </div>
 
-    <h1>💖 Happy Raksha Bandhan 💖</h1>
+    <script>
+        // Generate floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = ['💖', '💝', '❤️', '💕', '💗'][Math.floor(Math.random() * 5)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDelay = Math.random() * 8 + 's';
+            heart.style.animationDuration = (Math.random() * 3 + 6) + 's';
+            return heart;
+        }
 
-    <div class="slideshow">
-        <div class="slide">
-            <img src="image1.jpeg" alt="Raksha Bandhan Celebration 1">
-            <div class="overlay-text">A bond of love, care, and lifelong protection 💝</div>
-        </div>
-        <div class="slide">
-            <img src="image2.jpeg" alt="Raksha Bandhan Celebration 2">
-            <div class="overlay-text">Rakhi is the thread that ties hearts forever ❤️</div>
-        </div>
-        <div class="slide">
-            <img src="image3.jpeg" alt="Raksha Bandhan Celebration 3">
-            <div class="overlay-text">Celebrating the unbreakable bond of siblings 🌸</div>
-        </div>
-    </div>
+        // Generate sparkles
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.animationDelay = Math.random() * 3 + 's';
+            return sparkle;
+        }
 
-    <footer>🌟 Requested by Akshat & Created by His Father 🌟</footer>
+        // Initialize effects
+        function initializeEffects() {
+            const heartsContainer = document.getElementById('heartsContainer');
+            const sparklesContainer = document.getElementById('sparklesContainer');
 
+            // Adjust for mobile
+            const isMobile = window.innerWidth <= 768;
+            const heartCount = isMobile ? 5 : 8;
+            const sparkleCount = isMobile ? 10 : 15;
+
+            // Add hearts
+            for (let i = 0; i < heartCount; i++) {
+                heartsContainer.appendChild(createHeart());
+            }
+
+            // Add sparkles
+            for (let i = 0; i < sparkleCount; i++) {
+                sparklesContainer.appendChild(createSparkle());
+            }
+
+            // Regenerate hearts periodically
+            setInterval(() => {
+                if (heartsContainer.children.length < heartCount) {
+                    heartsContainer.appendChild(createHeart());
+                }
+            }, 2000);
+        }
+
+        // Handle orientation changes
+        window.addEventListener('orientationchange', function () {
+            setTimeout(() => {
+                location.reload();
+            }, 500);
+        });
+
+        // Handle resize for responsive adjustments
+        window.addEventListener('resize', function () {
+            clearTimeout(this.resizeTimeout);
+            this.resizeTimeout = setTimeout(() => {
+                const heartsContainer = document.getElementById('heartsContainer');
+                const sparklesContainer = document.getElementById('sparklesContainer');
+                const isMobile = window.innerWidth <= 768;
+
+                // Clear and reinitialize with appropriate counts
+                heartsContainer.innerHTML = '';
+                sparklesContainer.innerHTML = '';
+
+                const heartCount = isMobile ? 5 : 8;
+                const sparkleCount = isMobile ? 10 : 15;
+
+                for (let i = 0; i < heartCount; i++) {
+                    heartsContainer.appendChild(createHeart());
+                }
+
+                for (let i = 0; i < sparkleCount; i++) {
+                    sparklesContainer.appendChild(createSparkle());
+                }
+            }, 250);
+        });
+
+        // Start effects when page loads
+        window.addEventListener('load', initializeEffects);
+
+        // Add touch interaction for mobile
+        let slideshow = document.querySelector('.slideshow');
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        slideshow.addEventListener('touchstart', function (e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        slideshow.addEventListener('touchend', function (e) {
+            touchEndX = e.changedTouches[0].screenX;
+            // Add subtle touch feedback
+            if (Math.abs(touchStartX - touchEndX) > 50) {
+                slideshow.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    slideshow.style.transform = 'scale(1)';
+                }, 200);
+            }
+        });
+    </script>
 </body>
 
 </html>
