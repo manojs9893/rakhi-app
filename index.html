@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Raksha Bandhan</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom right, #ffecd2, #fcb69f);
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-top: 20px;
+            color: #ff0066;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #fff, 0 0 20px #ff0066, 0 0 30px #ff3399;
+            }
+
+            to {
+                text-shadow: 0 0 20px #fff, 0 0 40px #ff3399, 0 0 60px #ff66b2;
+            }
+        }
+
+        .slideshow {
+            width: 100%;
+            max-width: 600px;
+            height: 450px;
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            animation: fadeInOut 15s infinite;
+        }
+
+        .slide:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .slide:nth-child(2) {
+            animation-delay: 5s;
+        }
+
+        .slide:nth-child(3) {
+            animation-delay: 10s;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .overlay-text {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 1.3rem;
+            max-width: 90%;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+            }
+
+            5% {
+                opacity: 1;
+            }
+
+            30% {
+                opacity: 1;
+            }
+
+            35% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        footer {
+            margin-top: 30px;
+            padding: 15px;
+            background: rgba(255, 0, 102, 0.8);
+            font-size: 1.2rem;
+            border-radius: 10px 10px 0 0;
+            animation: bounceIn 1.5s ease-in-out;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            60% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>💖 Happy Raksha Bandhan 💖</h1>
+
+    <div class="slideshow">
+        <div class="slide">
+            <img src="image1.jpeg" alt="Raksha Bandhan Celebration 1">
+            <div class="overlay-text">A bond of love, care, and lifelong protection 💝</div>
+        </div>
+        <div class="slide">
+            <img src="image2.jpeg" alt="Raksha Bandhan Celebration 2">
+            <div class="overlay-text">Rakhi is the thread that ties hearts forever ❤️</div>
+        </div>
+        <div class="slide">
+            <img src="image3.jpeg" alt="Raksha Bandhan Celebration 3">
+            <div class="overlay-text">Celebrating the unbreakable bond of siblings 🌸</div>
+        </div>
+    </div>
+
+    <footer>🌟 Requested by Akshat & Created by His Father 🌟</footer>
+
+</body>
+
+</html>
