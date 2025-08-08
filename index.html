@@ -275,14 +275,18 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.8));
+            background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.95));
             padding: 50px 30px 25px;
-            color: #fff;
+            color: #ffffff;
             font-size: clamp(1.1rem, 3vw, 1.5rem);
-            font-weight: 600;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            font-weight: 700;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+                0 0 20px rgba(0, 0, 0, 0.8),
+                2px 2px 4px rgba(0, 0, 0, 1);
             transform: translateY(100%);
             animation: slideUpText 15s infinite;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: none;
         }
 
         .slide:nth-child(1) .overlay-text {
@@ -512,7 +516,7 @@
             top: 20%;
             left: -200px;
             font-size: 24px;
-            color: #ff6b9d;
+            color: #fff06b;
             font-weight: bold;
             animation: floatingText 15s infinite linear;
             z-index: 3;
@@ -680,8 +684,12 @@
 
             .overlay-text {
                 padding: 30px 20px 20px;
-                font-size: clamp(0.9rem, 4vw, 1.2rem);
+                font-size: clamp(1rem, 4vw, 1.3rem);
                 line-height: 1.4;
+                font-weight: 700;
+                text-shadow: 3px 3px 8px rgba(0, 0, 0, 1),
+                    0 0 15px rgba(0, 0, 0, 0.9);
+                background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.95));
             }
 
             .progress-container {
@@ -736,7 +744,11 @@
 
             .overlay-text {
                 padding: 25px 15px 15px;
-                font-size: clamp(0.8rem, 5vw, 1rem);
+                font-size: clamp(0.9rem, 5vw, 1.1rem);
+                font-weight: 700;
+                text-shadow: 3px 3px 6px rgba(0, 0, 0, 1),
+                    0 0 12px rgba(0, 0, 0, 0.9);
+                background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.95));
             }
 
             .footer {
